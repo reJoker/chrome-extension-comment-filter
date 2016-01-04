@@ -12,9 +12,9 @@ function checkComments (node) {
     Array.prototype.forEach.call(node, function (d, i) {
         var link = d.getElementsByTagName('a')[0],
             uid = /\d+$/.exec(link.href)[0];
-        if (uid && members.filter(function (m) {
+        if (uid && members.some(function (m) {
             return ~m.indexOf(uid);
-        }).length) {
+        })) {
             return d.style.backgroundColor = 'yellow';
         }
         return d.style.display = 'none';
@@ -41,7 +41,7 @@ document.body.addEventListener('mouseover', function (e) {
 
         timer = setInterval(function () {
             var comments = e.target.getElementsByTagName('li');
-            if (comments.length == numOfMsgs) {
+            if (comments.length) {
                 checkComments(comments);
                 clearInterval(timer);
             }
