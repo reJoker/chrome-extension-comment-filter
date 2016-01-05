@@ -23,6 +23,7 @@ function checkComments (node) {
 
 document.body.addEventListener('mouseover', function (e) {
     if (e.target && e.target.className == 'Ihwked UB0dDd GcESAf') {
+        e.stopPropagation();
         var elem = e.target.getElementsByClassName('KRktze')[1],
             iid = e.target.dataset.iid,
             numOfMsgs,
@@ -33,7 +34,7 @@ document.body.addEventListener('mouseover', function (e) {
         }
         elem.style.backgroundColor = 'red';
         numOfMsgs = Math.floor(/\d+/.exec(elem.textContent)[0]);
-        // TODO: trigger click separately
+
         if (numOfMsgs) {
             elem.click();
             checked[iid] = true;
